@@ -138,7 +138,7 @@ dependencies{
 #### Step 3.在布局文件中添加Banner，可以设置自定义属性
 ！！！此步骤可以省略，直接在Activity或者Fragment中new Banner();
 ```xml
-<com.youth.banner.Banner
+<com.zk.banner.Banner
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/banner"
     android:layout_width="match_parent"
