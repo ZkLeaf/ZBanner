@@ -71,8 +71,8 @@
 |setViewPagerIsScroll(boolean isScroll)| 设置是否允许手动滑动轮播图（默认true）|无
 |update(List<?> imageUrls,List<String> titles)| 更新图片和标题 |无
 |update(List<?> imageUrls)| 更新图片 |无
-|startAutoPlay()|开始轮播|1.4开始，此方法只作用于banner加载完毕-->需要在start()后执行
-|stopAutoPlay()|结束轮播|1.4开始，此方法只作用于banner加载完毕-->需要在start()后执行
+|startAutoPlay()|开始轮播|无
+|stopAutoPlay()|结束轮播|无
 |start()|开始进行banner渲染（必须放到最后执行）|无
 |setOffscreenPageLimit(int limit)|同viewpager的方法作用一样|无
 |setBannerTitle(String[] titles)| 设置轮播要显示的标题和图片对应（如果不传默认不显示标题）|无
@@ -122,7 +122,7 @@ dependencies{
 ```
 或者引用本地lib
 ```groovy
-compile project(':banner')
+    implementation project(':banner')
 ```
 
 
