@@ -1,4 +1,4 @@
-# HBanner
+# ZBanner
 
 首先特别感谢原作者youth5201314的开源banner
 
