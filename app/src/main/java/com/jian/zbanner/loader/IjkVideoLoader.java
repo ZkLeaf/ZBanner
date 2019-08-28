@@ -19,8 +19,6 @@ public class IjkVideoLoader extends VideoLoader {
     @Override
     public void displayView(Context context, Object path, View view, OnVideoStateListener listener) {
         MyJzvdStd jzVideo = (MyJzvdStd)view;
-//        jzVideo.setSeekBarBack(getResources().getDrawable(R.drawable.bottom_seek_progress));
-//        jzVideo.setBottomProgressBarBack(getResources().getDrawable(R.drawable.bottom_progress));
         jzVideo.setUp((String) path, "");
         RequestOptions options = new RequestOptions()
                 .centerCrop()

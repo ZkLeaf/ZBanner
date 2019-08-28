@@ -2,6 +2,7 @@ package com.zk.banner;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.media.MediaPlayer;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -665,9 +666,12 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     //视频子视图开启
     private void initVideoItem(View v) {
         currentVideoView = ((VideoView) v);
-        currentVideoView.setOnCompletionListener(m -> {
-            currentVideoView.seekTo(0);
-            currentVideoView.start();
+        currentVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                currentVideoView.seekTo(0);
+                currentVideoView.start();
+            }
         });
         currentVideoView.seekTo(0);
         currentVideoView.start();

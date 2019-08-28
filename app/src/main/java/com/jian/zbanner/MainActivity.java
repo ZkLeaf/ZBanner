@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         banner.setImages(App.images)
                 .setImageLoader(new GlideImageLoader())
                 .setOnBannerListener(this)
-                .setViewPagerIsScroll(true)
                 .setVideoLoader(new IjkVideoLoader())
                 .start();
     }
