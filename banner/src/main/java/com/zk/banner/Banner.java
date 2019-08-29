@@ -63,6 +63,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     private List<String> titles;
     private List imageUrls;
     private List<View> imageViews;//内容
+    private List<Integer> videoItem;//有视频的当前
     private volatile VideoView currentVideoView;//当前视频子窗口
     private List<ImageView> indicatorImages;//指示器数组
     private Context context;
@@ -93,6 +94,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
         titles = new ArrayList<>();
         imageUrls = new ArrayList<>();
         imageViews = new ArrayList<>();
+        videoItem = new ArrayList<>();
         indicatorImages = new ArrayList<>();
         dm = context.getResources().getDisplayMetrics();
         indicatorSize = dm.widthPixels / 80;
@@ -358,8 +360,11 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
             } else {
                 url = imagesUrl.get(i - 1);
             }
-
-            setViewByLoader(url, getItemTypeIsVideo(url));
+            boolean is = getItemTypeIsVideo(url);
+            if (is){
+                videoItem.add(i);
+            }
+            setViewByLoader(url, is);
         }
     }
 
@@ -527,21 +532,35 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
 
     @Override
     public void onVideoPlaying() {
-        if (isAutoPlay){
-            stopAutoPlay();
-        }
-        if (isScroll && count > 1) {
-            viewPager.setScrollable(false);
+        if (videoItem.size() > 0){
+            for (Integer in: videoItem) {
+                if (currentItem == in){
+                    if (isAutoPlay){
+                        stopAutoPlay();
+                    }
+                    if (isScroll && count > 1) {
+                        viewPager.setScrollable(false);
+                    }
+                    break;
+                }
+            }
         }
     }
 
     @Override
     public void onVideoPause() {
-        if (isAutoPlay){
-            startAutoPlay();
-        }
-        if (isScroll && count > 1) {
-            viewPager.setScrollable(true);
+        if (videoItem.size() > 0){
+            for (Integer in: videoItem) {
+                if (currentItem == in){
+                    if (isAutoPlay){
+                        startAutoPlay();
+                    }
+                    if (isScroll && count > 1) {
+                        viewPager.setScrollable(true);
+                    }
+                    break;
+                }
+            }
         }
     }
 
