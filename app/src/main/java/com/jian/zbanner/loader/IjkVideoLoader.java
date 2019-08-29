@@ -24,7 +24,7 @@ public class IjkVideoLoader extends VideoLoader {
                 .centerCrop()
                 .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
-        Glide.with(context).load((String) path).apply(options).into(jzVideo.thumbImageView);
+        Glide.with(context).load("http://img.zcool.cn/community/01700557a7f42f0000018c1bd6eb23.jpg").apply(options).into(jzVideo.thumbImageView);
 
         jzVideo.setOnVideoStateListener(listener);
 

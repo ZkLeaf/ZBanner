@@ -47,6 +47,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     private int scrollTime = BannerConfig.DURATION;
     private boolean isAutoPlay = BannerConfig.IS_AUTO_PLAY;
     private boolean isScroll = BannerConfig.IS_SCROLL;
+    private boolean isVideoPlaying = false;
     private int mIndicatorSelectedResId = R.drawable.gray_radius;
     private int mIndicatorUnselectedResId = R.drawable.white_radius;
     private int mLayoutResId = R.layout.banner;
@@ -488,9 +489,9 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     private final Runnable task = new Runnable() {
         @Override
         public void run() {
-            if (count > 1 && isAutoPlay) {
+            if (count > 1 && isAutoPlay && !isVideoPlaying) {
                 currentItem = currentItem % (count + 1) + 1;
-                Log.i(tag, "curr:" + currentItem + " count:" + count);
+                //Log.i(tag, "curr:" + currentItem + " count:" + count);
                 if (currentItem == 1) {
                     viewPager.setCurrentItem(currentItem, false);
                     handler.post(task);
@@ -504,7 +505,6 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-//        Log.i(tag, ev.getAction() + "--" + isAutoPlay);
         if (isAutoPlay) {
             int action = ev.getAction();
             if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL
@@ -533,16 +533,12 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     @Override
     public void onVideoPlaying() {
         if (videoItem.size() > 0){
-            for (Integer in: videoItem) {
-                if (currentItem == in){
-                    if (isAutoPlay){
-                        stopAutoPlay();
-                    }
-                    if (isScroll && count > 1) {
-                        viewPager.setScrollable(false);
-                    }
-                    break;
-                }
+            if (isAutoPlay){
+                isVideoPlaying = true;
+                stopAutoPlay();
+            }
+            if (isScroll && count > 1) {
+                viewPager.setScrollable(false);
             }
         }
     }
@@ -550,16 +546,12 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     @Override
     public void onVideoPause() {
         if (videoItem.size() > 0){
-            for (Integer in: videoItem) {
-                if (currentItem == in){
-                    if (isAutoPlay){
-                        startAutoPlay();
-                    }
-                    if (isScroll && count > 1) {
-                        viewPager.setScrollable(true);
-                    }
-                    break;
-                }
+            if (isAutoPlay){
+                isVideoPlaying = false;
+                startAutoPlay();
+            }
+            if (isScroll && count > 1) {
+                viewPager.setScrollable(true);
             }
         }
     }
@@ -711,7 +703,6 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
     }
 
     public void releaseBanner() {
-        stopAutoPlay();
         handler.removeCallbacksAndMessages(null);
     }
 }
