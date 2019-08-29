@@ -117,7 +117,7 @@
 Gradle 
 ```groovy
 dependencies{
-    implementation 'com.github.ZkLeaf:ZBanner:1.0.2'  //最新版本
+    implementation 'com.github.ZkLeaf:ZBanner:1.0.3'  //最新版本
 }
 ```
 或者引用本地lib
@@ -358,7 +358,6 @@ protected void onStop() {
     图片视频混合轮播
 
  * 解决图片视频混合轮播
- * 暂时只能添加一个视频混轮播
 
 
 
