@@ -117,7 +117,7 @@
 Gradle 
 ```groovy
 dependencies{
-    implementation 'com.github.ZkLeaf:ZBanner:1.0.3'  //最新版本
+    implementation 'com.github.ZkLeaf:ZBanner:1.0.4'  //最新版本
 }
 ```
 或者引用本地lib
