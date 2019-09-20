@@ -390,11 +390,11 @@ public class Banner extends FrameLayout implements OnPageChangeListener, OnVideo
         }
 
         setScaleType(v);
-        imageViews.add(v);
         if (loader != null)
             loader.displayView(context, url, v,this);// 绑定地址显示
         else
             Log.e(tag, "Please set images&videos loader.");
+        imageViews.add(v);
     }
 
     private void setScaleType(View imageView) {

@@ -117,7 +117,7 @@
 Gradle 
 ```groovy
 dependencies{
-    implementation 'com.github.ZkLeaf:ZBanner:1.0.4'  //最新版本
+    implementation 'com.github.ZkLeaf:ZBanner:1.0.5'  //最新版本
 }
 ```
 或者引用本地lib
@@ -353,6 +353,11 @@ protected void onStop() {
 - [ViewPagerTransforms](https://github.com/ToxicBakery/ViewPagerTransforms)
 
 ## 更新说明
+
+#### v1.0.5
+    优化
+
+ * 图片加载优化
 
 #### v1.0.4
     图片视频混合轮播优化
